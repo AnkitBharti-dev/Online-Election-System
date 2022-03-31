@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Requested Verification</title>
+<title>Admin Login</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -64,10 +64,18 @@ p {
 </div>
 
 <div class="navbar">
-  <a href="/OnlineElectionSystem/home" class="right">Home</a>
+  <a href="/OnlineElectionSystem/adminLogin" class="right">Home</a>
 </div>
-<p>Request Id : ${request_id}<p>
-<p>Your request is submitted please wait for Admin verification.</p>
+<label for="id"><b>Voter Id</b></label>
+    <input type="text" placeholder="Enter Voter Id" name="id" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+    <div class="clearfix">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="submit" class="signupbtn">Login</button>
+    </div>
 
 </body>
 </html>
