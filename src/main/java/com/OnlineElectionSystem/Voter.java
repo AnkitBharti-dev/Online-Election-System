@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class Voter {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
+	@GetMapping("/home")
+	public String home() {
+		return "home";
+	}
 	
 	@GetMapping("/VoterLoginPage")
 	public String voterLoginPage() {
@@ -39,20 +42,17 @@ public class Voter {
 		String email = req.getParameter("email");
 		String name = req.getParameter("name");
 		String father_name = req.getParameter("father_name");
-		String psw = req.getParameter("psw");
 		String address = req.getParameter("address");
 		
 		req.setAttribute("request_id", request_id);
 		
-		
 		  Connection con = jdbcTemplate.getDataSource().getConnection();
-		  CallableStatement stmt = con.prepareCall("call storedRequest(?,?,?,?,?,?)");
+		  CallableStatement stmt = con.prepareCall("call storedRequest(?,?,?,?,?)");
 		  stmt.setString(1,request_id); 
 		  stmt.setString(2,name);
 		  stmt.setString(3,father_name); 
-		  stmt.setString(4,email);
-		  stmt.setString(5,psw); 
-		  stmt.setString(6, address);
+		  stmt.setString(4,email); 
+		  stmt.setString(5, address);
 		  stmt.executeUpdate();
 		 
 		return "request_verification";
