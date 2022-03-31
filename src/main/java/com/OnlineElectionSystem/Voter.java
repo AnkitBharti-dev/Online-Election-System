@@ -55,7 +55,7 @@ public class Voter {
 		  stmt.setString(5, address);
 		  stmt.executeUpdate();
 		 
-		return "request_verification";
+		return "Voter/request_verification";
 	}
 
 	@SuppressWarnings("resource")
