@@ -120,7 +120,7 @@ body {
 </div>
 
 <div class="navbar">
-  <a href="login.jsp">Voter</a>
+  <a href="/OnlineElectionSystem/VoterLoginPage">Voter</a>
   <a href="#">Link</a>
   <a href="#">Link</a>
   <a href="#" class="right">Link</a>

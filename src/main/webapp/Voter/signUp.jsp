@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <style>
-
 /* Header/logo Title */
 .header {
   padding: 80px;
@@ -11,7 +10,6 @@
   background: #3232a8;
   color: white;
 }
-
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
 
@@ -89,27 +87,30 @@ button:hover {
   <p>Online voting Portal</p>
 </div>
 
-<form action="/action_page.php" style="border:1px solid #ccc">
+<form action="/OnlineElectionSystem/voterSignUp" method="post" "border:1px solid #ccc">
   <div class="container">
-    <h1>Voter Login</h1>
-    <p>Please fill in this for Login as Voter</p>
+    <h1>Sign Up</h1>
+    <p>Voter SignUp Portal</p>
     <hr>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
-
-    <label for="vid"><b>Voter Id</b></label>
-    <input type="text" placeholder="Enter Voter Id" name="vid" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    
+    <label for="name"><b>Name</b></label>
+    <input type="text" placeholder="Enter Name" name="name" required>
+    
+    <label for="father_name"><b>Father's Name</b></label>
+    <input type="text" placeholder="Enter Father's Name" name="father_name" required>
+    
+    <label for="address"><b>Address</b></label>
+    <input type="text" placeholder="Enter Address" name="address" required>
+    
+    <p>Sign Up as Voter you must agree with <a href="#" style="color:dodgerblue">Terms & Laws</a>.</p>
 
     <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Login</button>
+      <button type="submit" class="signupbtn">Sign Up</button>
     </div>
-    
-    <p>Not Sign Up, You can SingUp from here <a href="signUp.jsp" style="color:dodgerblue">Click here</a>.</p>
   </div>
 </form>
 

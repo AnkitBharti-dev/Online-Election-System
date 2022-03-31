@@ -4,6 +4,9 @@
 <html>
 <head>
 <style>
+div {
+align: 0 auto;
+}
 .header {
   padding: 80px;
   text-align: center;
@@ -19,8 +22,9 @@
   <h1>Election Commission of India</h1>
   <p>Online voting Portal</p>
 </div>
-
-<p>Request Number: ${request_id}</p>
+<div>
+<p>Request Id: ${request_id}</p>
  <p>Your request is submitted successfully. Please wait for BLO verification.</p>
+ </div>
 </body>
 </html>

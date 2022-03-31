@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <style>
+
 /* Header/logo Title */
 .header {
   padding: 80px;
@@ -10,6 +11,7 @@
   background: #3232a8;
   color: white;
 }
+
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
 
@@ -87,39 +89,24 @@ button:hover {
   <p>Online voting Portal</p>
 </div>
 
-<form action="/OnlineElectionSystem/voterSignUp" method="post" "border:1px solid #ccc">
+<form action="/action_page.php" style="border:1px solid #ccc">
   <div class="container">
-    <h1>Sign Up</h1>
-    <p>Voter SignUp Portal</p>
+    <h1>Voter Login</h1>
+    <p>Please fill in this for Login as Voter</p>
     <hr>
 
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
-    
-    <label for="name"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" required>
-    
-    <label for="father_name"><b>Father's Name</b></label>
-    <input type="text" placeholder="Enter Father's Name" name="father_name" required>
+    <label for="vid"><b>Voter Id</b></label>
+    <input type="text" placeholder="Enter Voter Id" name="vid" required>
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
 
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-    
-    <label for="address"><b>Address</b></label>
-    <input type="text" placeholder="Enter Address" name="address" required>
-    
-    <label for="dob"><b>Date of Birth</b></label>
-    <input type="date" name="dob" required>
-    
-    <p>Sign Up as Voter you must agree with <a href="#" style="color:dodgerblue">Terms & Laws</a>.</p>
-
     <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
+      <button type="submit" class="signupbtn">Login</button>
     </div>
+    
+    <p>Not Sign Up, You can SingUp from here <a href="/OnlineElectionSystem/VoterSignUpPage" style="color:dodgerblue">Click here</a>.</p>
   </div>
 </form>
 

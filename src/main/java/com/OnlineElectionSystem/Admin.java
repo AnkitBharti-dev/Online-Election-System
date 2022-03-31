@@ -1,4 +1,4 @@
-package com.electionSystem;
+package com.OnlineElectionSystem;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
