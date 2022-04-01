@@ -89,14 +89,14 @@ button:hover {
   <p>Online voting Portal</p>
 </div>
 
-<form action="/action_page.php" style="border:1px solid #ccc">
+<form action="/OnlineElectionSystem/voterLogin" method="post" style="border:1px solid #ccc">
   <div class="container">
     <h1>Voter Login</h1>
     <p>Please fill in this for Login as Voter</p>
     <hr>
 
-    <label for="vid"><b>Voter Id</b></label>
-    <input type="text" placeholder="Enter Voter Id" name="vid" required>
+    <label for="id"><b>Voter Id</b></label>
+    <input type="text" placeholder="Enter Voter Id" name="id" required>
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>

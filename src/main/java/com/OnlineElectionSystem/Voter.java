@@ -35,6 +35,24 @@ public class Voter {
 		return "Voter/signUp";
 	}
 	
+	@PostMapping("/voterLogin")
+	public String adminLogin(HttpServletRequest req) throws SQLException {
+		String id = req.getParameter("id");
+		String psw = req.getParameter("psw");
+		
+		Connection con = jdbcTemplate.getDataSource().getConnection();
+		PreparedStatement stmt = con.prepareStatement("select * from loginId where id=?");
+		stmt.setString(1, id);
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			String getPSW = rs.getString("psw");
+			if(psw.equals(getPSW))
+				return "Voter/voterControls";
+		}
+		return "Voter/login";
+	}
+	
 	@PostMapping("/voterSignUp")
 	public String voterSignUp(HttpServletRequest req) throws SQLException {
 		
@@ -55,6 +73,9 @@ public class Voter {
 		  stmt.setString(5, address);
 		  stmt.executeUpdate();
 		 
+		  String subject = "Request Submitted";
+		  String body = "Request Id "+request_id+" is submitted wait for BLO  verification";
+		 SendEmail.sendMail(email, subject, body);
 		return "Voter/request_verification";
 	}
 

@@ -64,10 +64,16 @@ p {
 </div>
 
 <div class="navbar">
-  <a href="/OnlineElectionSystem/adminLogin" class="right">Home</a>
+  <a href="/OnlineElectionSystem/home" class="right">Home</a>
 </div>
-<label for="id"><b>Voter Id</b></label>
-    <input type="text" placeholder="Enter Voter Id" name="id" required>
+<form action="/OnlineElectionSystem/adminLogin" method="post" style="border:1px solid #ccc">
+  <div class="container">
+    <h1>Admin Login</h1>
+    <p>Please fill in this for Login as Voter</p>
+    <hr>
+
+    <label for="id"><b>Admin Id</b></label>
+    <input type="text" placeholder="Enter Admin Id" name="id" required>
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
@@ -76,6 +82,9 @@ p {
       <button type="button" class="cancelbtn">Cancel</button>
       <button type="submit" class="signupbtn">Login</button>
     </div>
+    
+   </div>
+</form>
 
 </body>
 </html>
