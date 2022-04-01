@@ -41,7 +41,7 @@ public class Voter {
 		String psw = req.getParameter("psw");
 		
 		Connection con = jdbcTemplate.getDataSource().getConnection();
-		PreparedStatement stmt = con.prepareStatement("select * from loginId where id=?");
+		PreparedStatement stmt = con.prepareStatement("select * from login where id=?");
 		stmt.setString(1, id);
 		ResultSet rs = stmt.executeQuery();
 		
