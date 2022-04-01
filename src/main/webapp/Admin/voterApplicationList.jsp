@@ -75,6 +75,8 @@ table, th, td {
     <th>Father Name</th>
     <th>Email</th>
     <th>Address</th>
+    <th>Accept Request</th>
+    <th>Reject Request</th>
   </tr>
 <c:forEach var="item" items="${list}">
    <tr>
@@ -83,6 +85,16 @@ table, th, td {
     <td>${item.fathername}</td>
     <td>${item.email}</td>
     <td>${item.address}</td> 
+    <td><form action="/OnlineElectionSystem/acceptApplication" method="post">
+    	<input type="hidden" name="request_id" value="${item.request_id}">
+    	<button>Accept</button>
+    </form>
+    </td>
+    <td><form action="/OnlineElectionSystem/rejectApplication" method="post">
+    	<input type="hidden" value="${item.request_id}" name="request_id">
+    	<button>Reject</button>
+    </form>
+    </td>
   </tr>
   </c:forEach>
   </table>

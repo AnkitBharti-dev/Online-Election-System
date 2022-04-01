@@ -1,5 +1,6 @@
 package com.OnlineElectionSystem;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -63,5 +65,68 @@ public class Admin {
 			}
 			req.setAttribute("list", list);
 			return "Admin/voterApplicationList";
+	}
+	
+	@PostMapping("/acceptApplication")
+	public String acceptApplication(HttpServletRequest req) throws SQLException {
+		String voter_id = this.voterId();
+		String psw = this.generatePsw();
+		String request_id = req.getParameter("request_id");
+		String message = "Your request id " + request_id + " accept. Your voter id is "+ voter_id + " password " + psw + ". Use this for login on voter portal";
+		
+		this.sendEmail(request_id, message);
+		
+		Connection con = jdbcTemplate.getDataSource().getConnection();
+		CallableStatement stmt = con.prepareCall("call acceptRequest(?,?,?)");
+		stmt.setString(1, voter_id);
+		stmt.setString(2, psw);
+		stmt.setString(3, request_id);
+		stmt.executeUpdate();
+		
+		String direct = this.voterApplication(req);
+		return direct;
+	}
+	private void sendEmail(String request_id, String message) throws SQLException {
+		// TODO Auto-generated method stub
+		Connection con = jdbcTemplate.getDataSource().getConnection();
+		PreparedStatement stmt = con.prepareStatement("select * from signUpRequest where request_id=?");
+		stmt.setString(1, request_id);
+		ResultSet res = stmt.executeQuery();
+		String email="";
+		if(res.next())
+			email = res.getString("email");
+		
+		SendEmail.sendMail(email, "Request Accepted", message);
+	}
+	@SuppressWarnings("resource")
+	private String voterId() throws SQLException {
+		// TODO Auto-generated method stub
+		String id = this.generateVoterId();
+		Connection con = jdbcTemplate.getDataSource().getConnection();
+		PreparedStatement stmt = con.prepareStatement("select * from login where id=?");
+		stmt.setString(1, id);
+		ResultSet res = stmt.executeQuery();
+		while(res.next()) {
+			id = this.generateVoterId();
+			stmt.setString(1, id);
+			res = stmt.executeQuery();
+		}
+		return id;
+	}
+	private String generatePsw() {
+		// TODO Auto-generated method stub
+		String psw = "";
+		Random random = new Random();
+		for(int i=0;i<6;i++) 
+			psw += random.nextInt(10);
+		return psw;
+	}
+	private String generateVoterId() {
+		// TODO Auto-generated method stub
+		String voter_id = "OES";
+		Random random = new Random();
+		for(int i=0;i<4;i++) 
+			voter_id += random.nextInt(10);
+		return voter_id;
 	}
 }
