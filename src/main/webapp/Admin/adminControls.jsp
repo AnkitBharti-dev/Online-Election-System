@@ -62,8 +62,8 @@ body {
 
 <div class="navbar">
   <a href="/OnlineElectionSystem/voterApplication">Voter Application</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
+  <a href="/OnlineElectionSystem/voterList">Voter List</a>
+  <a href="/OnlineElectionSystem/candidateApplication">Candidate Application</a>
   <a href="/OnlineElectionSystem/home" class="right">LogOut</a>
 </div>
 

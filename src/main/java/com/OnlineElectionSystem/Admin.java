@@ -144,4 +144,41 @@ public class Admin {
 		
 		return this.voterApplication(req);
 	}
+	
+	@GetMapping("/voterList")
+	public String voterList(HttpServletRequest req) throws SQLException {
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		
+		Connection con = jdbcTemplate.getDataSource().getConnection();
+		PreparedStatement stmt = con.prepareStatement("select * from voter_list");
+		ResultSet res = stmt.executeQuery();
+		
+		while(res.next()) {
+			  Map<String,String> s = new HashMap<String,String>();
+			  s.put("voter_id", res.getString("voter_id"));
+			  s.put("name", res.getString("Name"));
+			  s.put("fathername", res.getString("FatherName"));
+			  s.put("email", res.getString("email"));
+			  s.put("address", res.getString("address"));
+			  list.add(s);
+			}
+			req.setAttribute("list", list);
+			return "Admin/voterList";
+	}
+	
+	@PostMapping("/removeFromVoterList") 
+	public String removeFromVoterList(HttpServletRequest req) throws SQLException {
+		String voter_id = req.getParameter("voter_id");
+		
+		Connection con = jdbcTemplate.getDataSource().getConnection();
+		PreparedStatement stmt = con.prepareStatement("delete from voter_list where voter_id=?");
+		stmt.setString(1, voter_id);
+		stmt.executeUpdate();
+		
+		stmt = con.prepareStatement("delete from login where id=?");
+		stmt.setString(1,voter_id);
+		stmt.executeUpdate();
+		
+		return this.voterList(req);
+	}
 }

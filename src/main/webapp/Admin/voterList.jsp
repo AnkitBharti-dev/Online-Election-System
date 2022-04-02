@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
-<title>Admin Controls</title>
+<title>Voter List</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -70,29 +70,23 @@ table, th, td {
 </div>
 <table border="2">
   <tr>
-    <th>Request Id</th>
+    <th>Voter Id</th>
     <th>Name</th>
     <th>Father Name</th>
     <th>Email</th>
     <th>Address</th>
-    <th>Accept Request</th>
-    <th>Reject Request</th>
+    <th>Remove from voter list</th>
   </tr>
 <c:forEach var="item" items="${list}">
    <tr>
-   	<td>${item.request_id}</td>
+   	<td>${item.voter_id}</td>
     <td>${item.name }</td>
     <td>${item.fathername}</td>
     <td>${item.email}</td>
     <td>${item.address}</td> 
-    <td><form action="/OnlineElectionSystem/acceptApplication" method="post">
-    	<input type="hidden" name="request_id" value="${item.request_id}">
-    	<button>Accept</button>
-    </form>
-    </td>
-    <td><form action="/OnlineElectionSystem/rejectApplication" method="post">
-    	<input type="hidden" value="${item.request_id}" name="request_id">
-    	<button>Reject</button>
+    <td><form action="/OnlineElectionSystem/removeFromVoterList" method="post">
+    	<input type="hidden" name="voter_id" value="${item.voter_id}">
+    	<button>Remove</button>
     </form>
     </td>
   </tr>
