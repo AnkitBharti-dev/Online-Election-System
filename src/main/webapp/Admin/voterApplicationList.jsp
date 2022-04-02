@@ -66,7 +66,7 @@ table, th, td {
   <a href="/OnlineElectionSystem/voterApplication">Voter Application</a>
   <a href="#">Link</a>
   <a href="#">Link</a>
-  <a href="#" class="right">Link</a>
+  <a href="/OnlineElectionSystem/home" class="right">LogOut</a>
 </div>
 <table border="2">
   <tr>

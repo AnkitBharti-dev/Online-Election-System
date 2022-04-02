@@ -74,7 +74,7 @@ public class Admin {
 		String request_id = req.getParameter("request_id");
 		String message = "Your request id " + request_id + " accept. Your voter id is "+ voter_id + " password " + psw + ". Use this for login on voter portal";
 		
-		this.sendEmail(request_id, message);
+		this.sendEmail(request_id, "Request Accepted", message);
 		
 		Connection con = jdbcTemplate.getDataSource().getConnection();
 		CallableStatement stmt = con.prepareCall("call acceptRequest(?,?,?)");
@@ -86,17 +86,17 @@ public class Admin {
 		String direct = this.voterApplication(req);
 		return direct;
 	}
-	private void sendEmail(String request_id, String message) throws SQLException {
+	private void sendEmail(String request_id, String subject,  String message) throws SQLException {
 		// TODO Auto-generated method stub
 		Connection con = jdbcTemplate.getDataSource().getConnection();
-		PreparedStatement stmt = con.prepareStatement("select * from signUpRequest where request_id=?");
+		PreparedStatement stmt = con.prepareStatement("select email from signUpRequest where request_id=?");
 		stmt.setString(1, request_id);
 		ResultSet res = stmt.executeQuery();
 		String email="";
 		if(res.next())
 			email = res.getString("email");
 		
-		SendEmail.sendMail(email, "Request Accepted", message);
+		SendEmail.sendMail(email, subject, message);
 	}
 	@SuppressWarnings("resource")
 	private String voterId() throws SQLException {
@@ -128,5 +128,20 @@ public class Admin {
 		for(int i=0;i<4;i++) 
 			voter_id += random.nextInt(10);
 		return voter_id;
+	}
+	
+	@PostMapping("/rejectApplication")
+	public String rejectRequest(HttpServletRequest req) throws SQLException {
+		String request_id = req.getParameter("request_id");
+		
+		String message = "Your request id "+request_id+" for voter registration is reject for invalid region";
+		this.sendEmail(request_id, "Request Rejected", message);
+		
+		Connection con = jdbcTemplate.getDataSource().getConnection();
+		CallableStatement stmt = con.prepareCall("call rejectRequest(?)");
+		stmt.setString(1, request_id);
+		stmt.executeUpdate();
+		
+		return this.voterApplication(req);
 	}
 }
