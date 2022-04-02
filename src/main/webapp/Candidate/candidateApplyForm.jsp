@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Admin Login</title>
+<title>Apply</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -130,26 +130,32 @@ button:hover {
 
 <div class="header">
   <h1>Election Commission of India</h1>
-  <p>Online Election Portal</p>
+  <p>Candidate Apply Form</p>
 </div>
 
 <div class="navbar">
   <a href="/OnlineElectionSystem/home" class="right">Home</a>
 </div>
-<form action="/OnlineElectionSystem/adminLogin" method="post" style="border:1px solid #ccc">
+<form action="/OnlineElectionSystem/apply" method="post" style="border:1px solid #ccc">
   <div class="container">
-    <h1>Admin Login</h1>
+    <h1>Apply for Election</h1>
     <hr>
 
-    <label for="id"><b>Admin Id</b></label>
-    <input type="text" placeholder="Enter Admin Id" name="id" required>
+    <label for="voter_id"><b>Voter Id</b></label>
+    <input type="text" placeholder="Enter Voter Id" name="voter_id" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <label for="name"><b>Name</b></label>
+    <input type="text" placeholder="Enter Name" name="name" required>
+    
+    <label for="party_name"><b>Party Name</b></label>
+    <input type="text" placeholder="Enter Party Name" name="party_name" required>
+    
+    <label for="symbol"><b>Symbol</b></label>
+    <input type="text" placeholder="Enter Symbol Name" name="symbol" required>
 
     <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Login</button>
+      <button type="submit" class="signupbtn">Apply</button>
     </div>
     
    </div>

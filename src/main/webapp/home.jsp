@@ -121,7 +121,7 @@ body {
 
 <div class="navbar">
   <a href="/OnlineElectionSystem/VoterLoginPage">Voter</a>
-  <a href="/">Link</a>
+  <a href="/OnlineElectionSystem/candidateApplyForm">Apply for Election</a>
   <a href="/OnlineElectionSystem/adminLoginPage">Admin</a>
   <a href="#" class="right">Link</a>
 </div>
