@@ -1,5 +1,6 @@
 package com.OnlineElectionSystem;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,25 +23,32 @@ public class Election {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	@GetMapping("/showCandidateList")
+	@GetMapping("/giveVoteControls")
 	public String showAcceptedCandidateList(HttpServletRequest req) throws SQLException {
 		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
 		
 		Connection con = jdbcTemplate.getDataSource().getConnection();
-		PreparedStatement stmt = con.prepareStatement("select * from candidate");
+		PreparedStatement stmt = con.prepareStatement("select * from electionActive");
 		ResultSet res = stmt.executeQuery();
+		if(res.next()) {
+			if(res.getString("active").equals("0")) {
+				req.setAttribute("message", "No election is available wait for elections");
+				return "Voter/general";
+			}
+		}
+		stmt = con.prepareStatement("select * from vote");
+		res = stmt.executeQuery();
 		
 		while(res.next()) {
 			  Map<String,String> s = new HashMap<String,String>();
 			  s.put("application_no", res.getString("application_no"));
-			  s.put("voter_id", res.getString("voter_id"));
 			  s.put("name", res.getString("name"));
 			  s.put("party_name", res.getString("party_name"));
 			  s.put("symbol", res.getString("symbol"));
 			  list.add(s);
 			}
 		req.setAttribute("list", list);
-		return "Voter/showCandidateList";
+		return "Voter/giveVoteControls";
 	}
 	
 	@GetMapping("/createElection")
@@ -67,6 +75,20 @@ public class Election {
 		
 		stmt = con.prepareStatement("truncate table vote");
 		stmt.executeUpdate();
+		
+		stmt = con.prepareStatement("truncate table alreadyVoted");
+		stmt.executeUpdate();
+		
+		stmt = con.prepareStatement("select * from candidate");
+		res = stmt.executeQuery();
+		stmt = con.prepareStatement("insert into vote values(?,?,?,?,0)");
+		while(res.next()) {
+			stmt.setString(1, res.getString("application_no"));
+			stmt.setString(2, res.getString("name"));
+			stmt.setString(3, res.getString("party_name"));
+			stmt.setString(4, res.getString("symbol"));
+			stmt.executeUpdate();
+		}
 		return "Admin/electionCreated";
 	}
 	
@@ -96,18 +118,23 @@ public class Election {
 	@PostMapping("/giveVote")
 	public String giveVote(HttpServletRequest req) throws SQLException {
 		Connection con = jdbcTemplate.getDataSource().getConnection();
-		PreparedStatement stmt = con.prepareStatement("select * from vote where voter_id=?");
+		PreparedStatement stmt = con.prepareStatement("select * from alreadyVoted where voter_id=?");
 		stmt.setString(1, req.getParameter("voter_id"));
 		ResultSet res = stmt.executeQuery();
-		if(res.next()) 
-			return "Voter/AlreadyVoted";
-		stmt = con.prepareStatement("insert into vote values(?,?,?,?,?)");
-		stmt.setString(1, req.getParameter("registration_no"));
-		stmt.setString(2, req.getParameter("name"));
-		stmt.setString(3, req.getParameter("party_name"));
-		stmt.setString(4, req.getParameter("symbol"));
-		stmt.setString(5, req.getParameter("voter_id"));
+		req.setAttribute("voter_id", req.getParameter("voter_id"));
+		if(res.next()) {
+			req.setAttribute("message", "Your already voted");
+			return "Voter/general";
+		}
+		stmt = con.prepareStatement("insert into alreadyVoted values (?)");
+		stmt.setString(1,req.getParameter("voter_id"));
 		stmt.executeUpdate();
-		return "Voter/sucessfullyVote";
+		
+		CallableStatement cStmt = con.prepareCall("call increaseVote(?)");
+		cStmt.setString(1, req.getParameter("application_no"));
+		cStmt.executeUpdate();
+		
+		req.setAttribute("message", "Your vote is register successfully");
+		return "Voter/general";
 	}
 }

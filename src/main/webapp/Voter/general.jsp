@@ -65,6 +65,6 @@ body {
   <a href="/OnlineElectionSystem/seeResult">See Result</a>
   <a href="/OnlineElectionSystem/home" class="right">LogOut</a>
 </div>
-<p>Welcome to voter portal. Choose what you want to execute</p>
+<p> ${message} </p>
 </body>
 </html>

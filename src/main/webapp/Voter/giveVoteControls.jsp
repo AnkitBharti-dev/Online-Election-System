@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
 <title>Voter DashBoard</title>
@@ -65,6 +64,26 @@ body {
   <a href="/OnlineElectionSystem/seeResult">See Result</a>
   <a href="/OnlineElectionSystem/home" class="right">LogOut</a>
 </div>
-<p>Welcome to voter portal. Choose what you want to execute</p>
+<table border="2">
+  <tr>
+    <th>Name</th>
+    <th>Party Name</th>
+    <th>Symbol</th>
+    <th>Press here for Vote</th>
+  </tr>
+<c:forEach var="item" items="${list}">
+   <tr>
+    <td>${item.name }</td>
+    <td>${item.party_name}</td>
+    <td>${item.symbol}</td> 
+    <td><form action="/OnlineElectionSystem/giveVote" method="post">
+    	<input type="hidden" name="application_no" value="${item.application_no}">
+    	<input type="text" name="voter_id" placeholder="Enter voter id">
+    	<button>Vote</button>
+    </form>
+  </tr>
+  </c:forEach>
+  </table>
+  
 </body>
 </html>

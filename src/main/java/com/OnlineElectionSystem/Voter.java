@@ -47,8 +47,9 @@ public class Voter {
 		
 		if(rs.next()) {
 			String getPSW = rs.getString("psw");
-			if(psw.equals(getPSW))
+			if(psw.equals(getPSW)) {
 				return "Voter/voterControls";
+			}
 		}
 		return "Voter/login";
 	}
