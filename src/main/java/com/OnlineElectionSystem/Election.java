@@ -22,7 +22,7 @@ public class Election {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	@GetMapping("/showAcceptedCandidateList")
+	@GetMapping("/showCandidateList")
 	public String showAcceptedCandidateList(HttpServletRequest req) throws SQLException {
 		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
 		
@@ -40,7 +40,7 @@ public class Election {
 			  list.add(s);
 			}
 		req.setAttribute("list", list);
-		return "Voter/showAcceptedCandidateList";
+		return "Voter/showCandidateList";
 	}
 	
 	@GetMapping("/createElection")
