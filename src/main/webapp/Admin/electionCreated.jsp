@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
 <title>Admin Controls</title>
@@ -50,6 +49,9 @@ body {
 .navbar a:hover {
   background-color: #ddd;
   color: black;
+table, th, td {
+  border: 1px solid black;
+}
 }
 </style>
 </head>
@@ -68,6 +70,25 @@ body {
   <a href="/OnlineElectionSystem/declareResult">Declare Result</a>
   <a href="/OnlineElectionSystem/home" class="right">LogOut</a>
 </div>
-
+<p>Election is started with following candidate</p>
+<table border="2">
+  <tr>
+  	<th>Application No</th>
+    <th>Voter Id</th>
+    <th>Name</th>
+    <th>Party Name</th>
+    <th>Symbol</th>
+  </tr>
+<c:forEach var="item" items="${list}">
+   <tr>
+    <td>${item.application_no}</td>
+   	<td>${item.voter_id}</td>
+    <td>${item.name }</td>
+    <td>${item.party_name}</td>
+    <td>${item.symbol}</td>
+    
+  </tr>
+  </c:forEach>
+  </table>
 </body>
 </html>

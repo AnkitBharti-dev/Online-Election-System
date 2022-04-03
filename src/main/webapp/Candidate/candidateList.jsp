@@ -66,6 +66,8 @@ table, th, td {
   <a href="/OnlineElectionSystem/voterApplication">Voter Application</a>
   <a href="/OnlineElectionSystem/voterList">Voter List</a>
   <a href="/OnlineElectionSystem/candidateApplication">Candidate Application</a>
+  <a href="/OnlineElectionSystem/createElection">Create Election</a>
+  <a href="/OnlineElectionSystem/declareResult">Declare Result</a>
   <a href="/OnlineElectionSystem/home" class="right">LogOut</a>
 </div>
 <table border="2">
