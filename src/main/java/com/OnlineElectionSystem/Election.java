@@ -92,29 +92,6 @@ public class Election {
 		return "Admin/electionCreated";
 	}
 	
-	@GetMapping("/declareResult")
-	public String declareResult(HttpServletRequest req) throws SQLException {
-		Connection con = jdbcTemplate.getDataSource().getConnection();
-		PreparedStatement stmt = con.prepareStatement("update electionActive set active=0");
-		stmt.executeUpdate();
-		
-		stmt = con.prepareStatement("select *, count(*) as votes from vote group by registration_no");
-		ResultSet res = stmt.executeQuery();
-		
-		List<Map<String, String>> list = new ArrayList<Map<String,String>>();
-		while(res.next()) {
-			  Map<String,String> s = new HashMap<String,String>();
-			  s.put("name", res.getString("name"));
-			  s.put("party_name", res.getString("party_name"));
-			  s.put("symbol", res.getString("symbol"));
-			  s.put("votes", "votes");
-			  list.add(s);
-			}
-		req.setAttribute("list", list);
-		
-		return "Admin/declareResult";
-	}
-	
 	@PostMapping("/giveVote")
 	public String giveVote(HttpServletRequest req) throws SQLException {
 		Connection con = jdbcTemplate.getDataSource().getConnection();
@@ -136,5 +113,28 @@ public class Election {
 		
 		req.setAttribute("message", "Your vote is register successfully");
 		return "Voter/general";
+	}
+	
+	@GetMapping("/declareResult")
+	public String declareResult1(HttpServletRequest req) throws SQLException {
+		Connection con = jdbcTemplate.getDataSource().getConnection();
+		CallableStatement stmt = con.prepareCall("call endElection()");
+		stmt.executeUpdate();
+		PreparedStatement stmt1 = con.prepareStatement("select * from vote");
+		ResultSet res = stmt1.executeQuery();
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		while(res.next()) {
+			  Map<String,String> s = new HashMap<String,String>();
+			  s.put("application_no", res.getString("application_no"));
+			  s.put("name", res.getString("name"));
+			  s.put("party_name", res.getString("party_name"));
+			  s.put("symbol", res.getString("symbol"));
+			  s.put("votes", res.getString("votes"));
+			  list.add(s);
+			}
+		req.setAttribute("list", list);
+		
+		return "Voter/result";
 	}
 }

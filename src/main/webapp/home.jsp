@@ -123,7 +123,7 @@ body {
   <a href="/OnlineElectionSystem/VoterLoginPage">Voter</a>
   <a href="/OnlineElectionSystem/candidateApplyForm">Apply for Election</a>
   <a href="/OnlineElectionSystem/adminLoginPage">Admin</a>
-  <a href="#" class="right">Link</a>
+  <a href="/OnlineElectionSystem/seeResult" class="right">See Result</a>
 </div>
 
 <div class="row">
@@ -139,22 +139,23 @@ body {
     <div class="fakeimg" style="height:60px;">Image</div>
   </div>
   <div class="main">
-    <h2>TITLE HEADING</h2>
-    <h5>Title description, Dec 7, 2017</h5>
+    <h2>About Application</h2>
+    <h5>Rohtak, March 3, 2022</h5>
     <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <p>About this Web Application</p>
+    <p>This voting system is a great solution for any kind of voting process. where admin can add multiple parties and voters can choose their candidate. Admin can analyze the results and declare a winning candidate.</p>
     <br>
-    <h2>TITLE HEADING</h2>
-    <h5>Title description, Sep 2, 2017</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <p>Voting system is dedicated to select a candidate from the list, electing, or determining. The main goal of voting is to come up with leaders of the people’s choice. In most countries and cities voting is a manual process, Some of the problems involved include ridging votes during election, insecure or inaccessible polling stations, inadequate polling materials and also inexperienced personnel.</p>
+    <br>
+    <p>This online voting/polling system seeks to address the above issues. It should be noted that with this system in place, the users, citizens, in this case, shall be given ample time during the voting period. They shall also be trained on how to vote online before the election time.</p>
+    <p>It’s a secure platform, to make it secure and fair it’s using a unique voter id so single users and voters uniquely also can vote only once for each election. It is a web application and users can access it by using a browser that is a secure and smooth process.</p>
+    
   </div>
 </div>
 
 <div class="footer">
-  <h2>Footer</h2>
+  <h2>Java Project Batch 1 Group 2</h2>
+  <p>This project is completed by Java Project Batch 1 group 2</p>
 </div>
 
 </body>

@@ -13,12 +13,13 @@
 </dependency>
 
 
-  <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-webmvc</artifactId>
-    <version>5.3.15</version>
+    <version>5.3.18</version>
 </dependency>
+
 <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 <dependency>
     <groupId>mysql</groupId>

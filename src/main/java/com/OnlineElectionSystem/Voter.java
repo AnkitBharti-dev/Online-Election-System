@@ -5,6 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -105,4 +109,32 @@ public class Voter {
 			  num += random.nextInt(10); 
 		  return num; 
 	  } 
+	  
+	  @GetMapping("/seeResult")
+	  public String seeResult(HttpServletRequest req) throws SQLException {
+		  Connection con = jdbcTemplate.getDataSource().getConnection();
+		  PreparedStatement stmt = con.prepareStatement("select active from electionActive");
+		  ResultSet res = stmt.executeQuery();
+		  if(res.next()) {
+			  if(res.getString("active").equals("1")) {
+				  req.setAttribute("message", "Election is On Wait for Result Declaration");
+				  return "Voter/general";
+			  }
+		  }
+		  stmt = con.prepareStatement("select * from vote");
+		  res = stmt.executeQuery();
+			
+			List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+			while(res.next()) {
+				  Map<String,String> s = new HashMap<String,String>();
+				  s.put("name", res.getString("name"));
+				  s.put("party_name", res.getString("party_name"));
+				  s.put("symbol", res.getString("symbol"));
+				  s.put("votes", res.getString("votes"));
+				  list.add(s);
+				}
+			req.setAttribute("list", list);
+			
+			return "Voter/result";
+	  }
 }
