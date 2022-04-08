@@ -87,7 +87,6 @@ public class Admin {
 		return direct;
 	}
 	private void sendEmail(String request_id, String subject,  String message) throws SQLException {
-		// TODO Auto-generated method stub
 		Connection con = jdbcTemplate.getDataSource().getConnection();
 		PreparedStatement stmt = con.prepareStatement("select email from signUpRequest where request_id=?");
 		stmt.setString(1, request_id);
@@ -114,7 +113,6 @@ public class Admin {
 		return id;
 	}
 	private String generatePsw() {
-		// TODO Auto-generated method stub
 		String psw = "";
 		Random random = new Random();
 		for(int i=0;i<6;i++) 
@@ -122,7 +120,6 @@ public class Admin {
 		return psw;
 	}
 	private String generateVoterId() {
-		// TODO Auto-generated method stub
 		String voter_id = "OES";
 		Random random = new Random();
 		for(int i=0;i<4;i++) 

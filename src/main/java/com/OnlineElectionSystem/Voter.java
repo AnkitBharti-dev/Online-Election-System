@@ -86,7 +86,6 @@ public class Voter {
 
 	@SuppressWarnings("resource")
 	private String generateRequestNo() throws SQLException { 
-		  // TODO Auto-generated method stub 
 		  String num = Voter.geneateNo(); 
 		  Connection con = jdbcTemplate.getDataSource().getConnection(); 
 		  String query = "select * from signUpRequest where request_id=?"; 

@@ -68,7 +68,6 @@ public class Candidate {
 	}
 	
 	private void sendEmail(String voter_id, String subject,  String message) throws SQLException {
-		// TODO Auto-generated method stub
 		Connection con = jdbcTemplate.getDataSource().getConnection();
 		PreparedStatement stmt = con.prepareStatement("select * from voter_list where voter_id=?");
 		stmt.setString(1, voter_id);
@@ -112,7 +111,6 @@ public class Candidate {
 	
 	@SuppressWarnings("resource")
 	private String generateRequestNo() throws SQLException { 
-		  // TODO Auto-generated method stub 
 		  String num = Candidate.geneateNo(); 
 		  Connection con = jdbcTemplate.getDataSource().getConnection(); 
 		  String query = "select * from candidateApplication where application_no=?"; 
@@ -128,7 +126,6 @@ public class Candidate {
 		  }
 	  
 	  private static String geneateNo() { 
-		  // TODO Auto-generated method stub 
 		  Random random = new Random(); 
 		  String num = ""; 
 		  for(int i=1;i<=10;i++) 
