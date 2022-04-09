@@ -120,7 +120,7 @@ public class Voter {
 				  return "Voter/general";
 			  }
 		  }
-		  stmt = con.prepareStatement("select * from vote");
+		  stmt = con.prepareStatement("select * from vote order by votes desc");
 		  res = stmt.executeQuery();
 			
 			List<Map<String,String>> list = new ArrayList<Map<String,String>>();

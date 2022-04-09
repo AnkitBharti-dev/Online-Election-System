@@ -120,7 +120,7 @@ public class Election {
 		Connection con = jdbcTemplate.getDataSource().getConnection();
 		CallableStatement stmt = con.prepareCall("call endElection()");
 		stmt.executeUpdate();
-		PreparedStatement stmt1 = con.prepareStatement("select * from vote");
+		PreparedStatement stmt1 = con.prepareStatement("select * from vote order by votes desc");
 		ResultSet res = stmt1.executeQuery();
 		
 		List<Map<String,String>> list = new ArrayList<Map<String,String>>();

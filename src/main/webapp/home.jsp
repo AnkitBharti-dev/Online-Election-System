@@ -130,18 +130,18 @@ body {
   <div class="side">
     <h2>Chief Election Commissioner</h2>
     <h5>Surenderpal Singh Rai</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
+    <div class="fakeimg" style="height:200px;"></div>
     <p>From May 2021 to June 2022</p>
     <h3>More Text</h3>
     <p>Lorem ipsum dolor sit ame.</p>
-    <div class="fakeimg" style="height:60px;">Image</div><br>
-    <div class="fakeimg" style="height:60px;">Image</div><br>
-    <div class="fakeimg" style="height:60px;">Image</div>
+    <div class="fakeimg" style="height:60px;">Admin</div><br>
+    <div class="fakeimg" style="height:60px;">Candidate</div><br>
+    <div class="fakeimg" style="height:60px;">Voter</div>
   </div>
   <div class="main">
     <h2>About Application</h2>
     <h5>Rohtak, March 3, 2022</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
+    <div class="fakeimg" style="height:200px;"></div>
     <p>About this Web Application</p>
     <p>This voting system is a great solution for any kind of voting process. where admin can add multiple parties and voters can choose their candidate. Admin can analyze the results and declare a winning candidate.</p>
     <br>

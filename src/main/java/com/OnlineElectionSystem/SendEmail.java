@@ -16,13 +16,13 @@ public class SendEmail {
 		p.put("mail.smtp.port", "465");
 		p.put("mail.smtp.ssl.enable", "true");
 		p.put("mail.smtp.auth", "true");
-		MailAuthenticator m = new MailAuthenticator("enter email id here", "enter your passowrd");
+		MailAuthenticator m = new MailAuthenticator("abc4112021@gmail.com", "ankitbharti@043");
 		
 		Session session = Session.getInstance(p, m);
 		session.setDebug(true);
 		MimeMessage msg = new MimeMessage(session);
 		try {
-			msg.setFrom("enter email id here");
+			msg.setFrom("abc4112021@gmail.com");
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(emailTo));
 			msg.setSubject(subject);
 			msg.setText(body);
