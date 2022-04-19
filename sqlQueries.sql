@@ -16,7 +16,7 @@ create table voter_list(voter_id varchar(10), name varchar(20), fathername varch
 create table rejectedApplications (request_id varchar(10), Name varchar(20), FatherName varchar(20), email varchar(40), address text);
 
 -- table for store candidate application
-create table candidateApplication(voter_id varchar(10), name varchar(20), party_name varchar(20), symbol varchar(20));
+create table candidateApplication(application_no varchar(10), voter_id varchar(10), name varchar(20), party_name varchar(20), symbol varchar(20));
 
 -- table store candidate whose application is accepted
 create table candidate(application_no varchar(10), voter_id varchar(10), name varchar(20), party_name varchar(20), symbol varchar(20));
